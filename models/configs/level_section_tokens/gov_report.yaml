@@ -1,0 +1,53 @@
+common:
+  fp16: true
+  log_format: tqdm
+  log_interval: 1
+  user_dir: ${env:CODEDIR}/models/level_section_tokens
+
+checkpoint:
+  no_epoch_checkpoints: true
+  save_dir: ${env:EXPDIR}/trained_models/gov_report/level_section_tokens
+  no_save_optimizer_state: true
+
+task:
+  _name: hf_translation
+  data: ${env:EXPDIR}/data
+  data_loading_file: ${env:CODEDIR}/models/data_loading_script/summary_generation_data.py
+  data_name: gov_report
+  max_source_positions: 16384
+  max_target_positions: 1024
+  required_seq_len_multiple: 1024
+  tokenizer_name: allenai/led-large-16384
+
+dataset:
+  num_workers: 4
+  max_tokens: 16384
+  skip_invalid_size_inputs_valid_test: true
+
+distributed_training:
+  distributed_world_size: 4
+
+criterion:
+  _name: hf_label_smoothed_cross_entropy
+  label_smoothing: 0.1
+
+optimization:
+  clip_norm: 1.0
+  max_update: 5000
+  lr: [5e-5]
+  max_epoch: 3
+  update_freq: [2]
+
+optimizer:
+  _name: adam
+  adam_betas: (0.9,0.98)
+  adam_eps: 1e-06
+  weight_decay: 0.01
+
+lr_scheduler:
+  _name: polynomial_decay
+  warmup_updates: 200
+
+model:
+  _name: hf_led
+  gradient_checkpointing: true
