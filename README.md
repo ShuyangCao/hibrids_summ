@@ -34,6 +34,8 @@ cd ../..
 # Install after Fairseq because fairseq overrides torch version
 pip install -r requirements.txt
 
+# ==== The following requirements are only needed for model training ====
+
 # Fairseq C extensions
 cd lib/fairseq
 python setup.py build_ext --inplace
