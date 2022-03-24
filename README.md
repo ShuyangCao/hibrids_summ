@@ -120,6 +120,14 @@ python decode_wiki.py --model_dir $EXPDIR/trained_models/wiki_bio_sum/hierarchic
 python decode_gov_report.py --model_dir $EXPDIR/trained_models/gov_report/hierarchical_bias_decoder
 ```
 
+#### Pretty Print Hierarchy
+
+```shell
+python pretty_print.py --source_jsonl $EXPDIR/data/gov-report-qs/test.jsonl \
+  --linearized_hierarchy $EXPDIR/decode_outputs/qs_hierarchy_fq/hierarchical_bias/generated_predictions.txt \
+  --output_file $EXPDIR/decode_outputs/qs_hierarchy_fq/hierarchical_bias/formatted_hierarchy.txt
+```
+
 ### Train Models
 
 #### Hierarchical Bias on Encoder
