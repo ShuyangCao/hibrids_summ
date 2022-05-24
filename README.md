@@ -4,6 +4,12 @@ Code for ACL 2022 paper "HIBRIDS: Attention with Hierarchical Biases for Structu
 
 -------
 
+## News
+
+- [GovReport-QS](https://huggingface.co/datasets/launch/gov_report_qs) and [GovReport](https://huggingface.co/datasets/launch/gov_report) are now available on HuggingFace Datasets.
+
+-------
+
 ## Data
 
 - [GovReport-QS and GovReport](https://gov-report-data.github.io/)
